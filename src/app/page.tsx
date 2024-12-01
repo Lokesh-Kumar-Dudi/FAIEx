@@ -28,10 +28,15 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-const generateIconKeyMap = (iconSet: any) => {
+type BrandIconsType = typeof faBrandIcons;
+type SolidIconsType = typeof faSolidIcons;
+type RegularIconsType = typeof faRegularIcons;
+
+type IconSet = BrandIconsType | SolidIconsType | RegularIconsType;
+
+const generateIconKeyMap = (iconSet: IconSet) => {
   return Object.keys(iconSet).map((key) => ({
-    // @ts-ignore
-    icon: iconSet[key],
+    icon: Object(iconSet)[key],
     key,
   }));
 };
